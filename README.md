@@ -12,7 +12,7 @@ Bookstore is a full-stack e-commerce platform to buy books in AI/ML/Data Science
 - **Testing**: Postman collections
 
 ## Live Demo
-- **App**: https://ai-bookstore-wxlx-o52dptx57-asselaltayevas-projects.vercel.app
+- **App**: https://ai-bookstore-gamma.vercel.app
 
 **Health Check**: `GET /api/health` returns `{"status": "OK"}`.
 
