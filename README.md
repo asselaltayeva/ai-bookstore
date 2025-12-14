@@ -1,7 +1,6 @@
-# bookstore
-# AI Bookstore API
+# Bookstore
 
-AI Bookstore is a full-stack e-commerce platform to buy books in AI/ML/Data Science books using Next.js 15, MongoDB, Clerk, Inngest, and Vercel. The backend provides RESTful API endpoints with JWT authentication, supporting endpoints for CRUD operations on books, users, orders, categories. Plus advanced features like pagination, search, sorting, and role-based access (user/seller).
+Bookstore is a full-stack e-commerce platform to buy books in AI/ML/Data Science books using Next.js 15, MongoDB, Clerk, Inngest, and Vercel. The backend provides RESTful API endpoints with JWT authentication, supporting endpoints for CRUD operations on books, users, orders, categories. Plus advanced features like pagination, search, sorting, and role-based access (user/seller).
 
 ## Tech Stack
 - **Frontend**: Next.js 15, TypeScript, Tailwind CSS, React
