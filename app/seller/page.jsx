@@ -2,8 +2,13 @@
 import React, { useState } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { useAppContext } from "@/context/AppContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
+
+  const { getToken } = useAppContext();
 
   const [files, setFiles] = useState([]);
   const [name, setName] = useState('');
@@ -14,7 +19,42 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // upload to the database, call api
 
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('price', price);
+    formData.append('offerPrice', offerPrice);
+
+    files.forEach(file => {
+      if (file) formData.append('images', file);
+    });
+
+    try{
+      const token = await getToken();
+
+      const { data } = await axios.post('/api/product/add', formData, {
+        headers : {
+          Authorization: `Bearer ${token}` 
+        },
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        setFiles([]);
+        setName('');
+        setDescription('');
+        setCategory('ML');
+        setPrice('');
+        setOfferPrice('');
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -120,11 +160,10 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="px-8 py-2.5 bg-zinc-900-600-600 text-white font-medium rounded">
+        <button type="submit" className="px-8 py-2.5 bg-zinc-900 text-white font-medium rounded">
           ADD
         </button>
       </form>
-      {/* <Footer /> */}
     </div>
   );
 };
