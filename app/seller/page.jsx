@@ -28,9 +28,9 @@ const AddProduct = () => {
     formData.append('price', price);
     formData.append('offerPrice', offerPrice);
 
-    files.forEach(file => {
-      if (file) formData.append('images', file);
-    });
+    for (let i=0; i < files.length; i++) { 
+      formData.append('images', files[i]); 
+    }
 
     try{
       const token = await getToken();
@@ -59,7 +59,7 @@ const AddProduct = () => {
 
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">
-      <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-5 max-w-lg">
+      <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-7 max-w-4xl w-full">
         <div>
           <p className="text-base font-medium">Product Image</p>
           <div className="flex flex-wrap items-center gap-3 mt-2">
