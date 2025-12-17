@@ -63,7 +63,7 @@ export const AppContextProvider = ({ children }) => {
             }
 
         } catch (error) {
-            toast.error(error.message || "Something went wrong");
+            console.warn("fetchUserData skipped:", error.message)
         }
     };
 
@@ -117,6 +117,7 @@ export const AppContextProvider = ({ children }) => {
 
     const value = {
         user,
+        getToken,
         isSignedIn,
         currency,
         router,

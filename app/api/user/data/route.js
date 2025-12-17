@@ -6,33 +6,29 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
     try {
         const { userId } = getAuth(request);
-
         if (!userId) {
-            return NextResponse.json(
-                { success: false, message: "Unauthorized" },
-                { status: 401 }
-            );
+            return NextResponse.json({ success: false }, { status: 401 });
         }
 
         await connectDB();
-        let user = await User.findOne({ clerkId: userId });
-        if (!user) {
-            user = await User.create({
-                clerkId: userId,
-                cartItems: {},
-                role: "user",
-            });
-        }
 
-        return NextResponse.json({
-            success: true,
-            user,
-        });
+        const user = await User.findOneAndUpdate(
+            { clerkId: userId },
+            {
+                $setOnInsert: {
+                    clerkId: userId,
+                    cartItems: {},
+                    role: "user",
+                },
+            },
+            { new: true, upsert: true }
+        );
 
+        return NextResponse.json({ success: true, user });
     } catch (error) {
-        console.error("USER FETCH ERROR:", error);
+        console.error(error);
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: "Server error" },
             { status: 500 }
         );
     }
