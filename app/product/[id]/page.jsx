@@ -108,7 +108,7 @@ const Product = () => {
                         <button onClick={() => addToCart(productData._id)} className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
                             Add to Cart
                         </button>
-                        <button onClick={() => { addToCart(productData._id); router.push('/cart') }} className="w-full py-3.5 bg-zinc-900-600-500 text-white hover:bg-zinc-900-600-600 transition">
+                        <button onClick={() => { addToCart(productData._id); router.push('/cart') }} className="w-full py-3.5 bg-zinc-900 text-white hover:bg-zinc-900-600-600 transition">
                             Buy now
                         </button>
                     </div>

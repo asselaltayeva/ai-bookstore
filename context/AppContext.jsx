@@ -1,6 +1,5 @@
 'use client'
 
-import { productsDummyData } from "@/assets/assets";
 import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -79,11 +78,16 @@ export const AppContextProvider = ({ children }) => {
 
 
     const addToCart = (itemId) => {
-        setCartItems(prev => {
-            const cart = structuredClone(prev);
-            cart[itemId] = (cart[itemId] || 0) + 1;
-            return cart;
-        });
+        let cartData = structuredClone(cartItems);
+
+        if (cartData[itemId]) {
+            cartData[itemId] += 1;
+        } else {
+            cartData[itemId] = 1;
+        }
+
+        setCartItems(cartData);
+        toast.success("Item added to cart");
     };
 
     const updateCartQuantity = (itemId, quantity) => {
