@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.36.2",
+    "@react-google-maps/api": "^2.20.8",
     "axios": "^1.13.2",
     "cloudinary": "^2.8.0",
     "inngest": "^3.47.0",

@@ -14,7 +14,7 @@ import arrow_icon from "./arrow_icon.svg";
 import increase_arrow from "./increase_arrow.svg";
 import decrease_arrow from "./decrease_arrow.svg";
 import arrow_right_icon_colored from "./arrow_right_icon_colored.svg";
-import my_location_image from "./my_location_image.svg";
+import boxes from "./boxes.png";
 import arrow_icon_white from "./arrow_icon_white.svg";
 import heart_icon from "./heart_icon.svg";
 import star_icon from "./star_icon.svg";
@@ -51,7 +51,7 @@ export const assets = {
   increase_arrow,
   decrease_arrow,
   arrow_right_icon_colored,
-  my_location_image,
+  boxes,
   arrow_icon_white,
   heart_icon,
   star_icon,
@@ -303,7 +303,6 @@ export const orderDummyData = [
       pincode: 654321,
       area: "Main Road , 123 Street, G Block",
       city: "City",
-      state: "State",
       __v: 0
     },
     status: "Order Placed",
@@ -343,7 +342,6 @@ export const orderDummyData = [
       pincode: 654321,
       area: "Main Road , 123 Street, G Block",
       city: "City",
-      state: "State",
       __v: 0
     },
     status: "Order Placed",
@@ -383,7 +381,6 @@ export const orderDummyData = [
       pincode: 654321,
       area: "Some Area, 456 Avenue, H Block",
       city: "City",
-      state: "State",
       __v: 0
     },
     status: "Order Placed",
@@ -400,9 +397,8 @@ export const addressDummyData = [
     "fullName": "Soon Lee",
     "phoneNumber": "0123456789",
     "pincode": 654321,
-    "area": "Main Road , 123 Street, G Block",
-    "city": "City",
-    "state": "State",
+    "area": "Gangnam street, 45",
+    "city": "Seoul",
     "__v": 0
   }
 ]
