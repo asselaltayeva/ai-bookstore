@@ -77,7 +77,7 @@ export const AppContextProvider = ({ children }) => {
     };
 
 
-    const addToCart = (itemId) => {
+    const addToCart = async (itemId) => {
         let cartData = structuredClone(cartItems);
 
         if (cartData[itemId]) {
@@ -87,21 +87,56 @@ export const AppContextProvider = ({ children }) => {
         }
 
         setCartItems(cartData);
-        toast.success("Item added to cart");
-    };
-
-    const updateCartQuantity = (itemId, quantity) => {
-        setCartItems(prev => {
-            const cart = structuredClone(prev);
-            if (quantity === 0) {
-                delete cart[itemId];
-            } else {
-                cart[itemId] = quantity;
+        if (user){
+            try{
+                const token = await getToken();
+                await axios.post('/api/cart/update', {cartData}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                toast.success("Item added to cart");
+            }catch (error){
+                console.error("Failed to update cart:", error.message);
             }
-            return cart;
-        });
+        }
     };
 
+    const updateCartQuantity = async (itemId, quantity) => {
+        let updatedCart;
+      
+        setCartItems(prev => {
+          const cart = structuredClone(prev);
+      
+          if (quantity === 0) {
+            delete cart[itemId];
+          } else {
+            cart[itemId] = quantity;
+          }
+      
+          updatedCart = cart; 
+          return cart;
+        });
+      
+        if (user) {
+          try {
+            const token = await getToken();
+            await axios.post(
+              "/api/cart/update",
+              { cartData: updatedCart },
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            toast.success("Cart updated successfully");
+          } catch (error) {
+            console.error("Failed to update cart:", error.message);
+          }
+        }
+      };
+      
     const getCartCount = () => {
         return Object.values(cartItems).reduce((a, b) => a + b, 0);
     };
