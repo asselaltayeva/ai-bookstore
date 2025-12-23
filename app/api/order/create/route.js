@@ -3,10 +3,12 @@ import Product from "@/models/Product";
 import User from "@/models/User";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import connectDB from "@/config/db";
 
 export async function POST(request) {
     try {
         const { userId } = getAuth(request);
+        await connectDB();
         const { address, items } = await request.json();
 
         if (!address || items.length === 0) {
@@ -15,7 +17,6 @@ export async function POST(request) {
                 message: "Address and items are required to place an order",
             })
         }
-
         // calculate amount using items, use reduce method
         const amount = await items.reduce(async (acc, item) => {
             const product = await Product.findById(item.product);

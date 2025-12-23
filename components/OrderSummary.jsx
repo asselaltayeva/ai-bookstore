@@ -112,9 +112,9 @@ const OrderSummary = () => {
 
             {isDropdownOpen && (
               <ul className="absolute w-full bg-white border shadow-md mt-1 z-10 py-1.5">
-                {userAddresses.map((address, index) => (
+                {userAddresses.map((address) => (
                   <li
-                    key={index}
+                    key={address._id}
                     className="px-4 py-2 hover:bg-gray-500/10 cursor-pointer"
                     onClick={() => handleAddressSelect(address)}
                   >
@@ -142,7 +142,7 @@ const OrderSummary = () => {
               placeholder="Enter promo code"
               className="flex-grow w-full outline-none p-2.5 text-gray-600 border"
             />
-            <button className="bg-zinc-900-600-600 text-white px-9 py-2 hover:bg-zinc-900-600-700">
+            <button className="bg-zinc-900 text-white px-9 py-2 hover:bg-zinc-900">
               Apply
             </button>
           </div>
