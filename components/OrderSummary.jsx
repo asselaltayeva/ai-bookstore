@@ -170,7 +170,7 @@ const OrderSummary = () => {
         </div>
       </div>
 
-      <button onClick={createOrder} className="w-full bg-zinc-900-600-600 text-white py-3 mt-5 hover:bg-zinc-900-600-700">
+      <button onClick={createOrder} className="w-full bg-zinc-900 text-white py-3 mt-5 hover:bg-zinc-900-600-700">
         Place Order
       </button>
     </div>

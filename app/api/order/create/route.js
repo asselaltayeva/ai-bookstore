@@ -44,6 +44,7 @@ export async function POST(request) {
             message: "Order placed successfully",
         });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({success: false, message: error.message});
     }
 }
